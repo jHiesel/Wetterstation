@@ -7,7 +7,8 @@
             <select class="form-control" name="station_id" style="width: 200px">
                 <?php
                 foreach($model as $station):
-                    echo '<option value="' . $station->getId() . '">' . $station->getName() . '</option>';
+                    print_r($model);
+                    echo '<option value="' . $station->getId(). '">' . $station->getName() . '</option>';
                 endforeach;
                 ?>
             </select>

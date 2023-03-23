@@ -5,7 +5,7 @@ require_once("DatabaseObject.php");
 class Station implements DatabaseObject, JsonSerializable
 {
     private $id;
-    private $name;
+    private $Name;
     private $altitude;
     private $location;
 
@@ -44,7 +44,7 @@ class Station implements DatabaseObject, JsonSerializable
         $db = Database::connect();
         $sql = "INSERT INTO station (name, altitude, location) values(?, ?, ?)";
         $stmt = $db->prepare($sql);
-        $stmt->execute(array($this->name, $this->altitude, $this->location));
+        $stmt->execute(array($this->Name, $this->altitude, $this->location));
         $lastId = $db->lastInsertId();
         Database::disconnect();
         return $lastId;
@@ -58,7 +58,7 @@ class Station implements DatabaseObject, JsonSerializable
         $db = Database::connect();
         $sql = "UPDATE station set name = ?, altitude = ?, location = ? WHERE id = ?";
         $stmt = $db->prepare($sql);
-        $stmt->execute(array($this->name, $this->altitude, $this->location, $this->id));
+        $stmt->execute(array($this->Name, $this->altitude, $this->location, $this->id));
         Database::disconnect();
     }
 
@@ -120,10 +120,10 @@ class Station implements DatabaseObject, JsonSerializable
 
     private function validateName()
     {
-        if ($this->name == '') {
+        if ($this->Name == '') {
             $this->errors['name'] = "Name darf nicht leer sein";
             return false;
-        } else if (strlen($this->name) > 64) {
+        } else if (strlen($this->Name) > 64) {
             $this->errors['name'] = "Name zu lang";
             return false;
         } else {
@@ -173,12 +173,54 @@ class Station implements DatabaseObject, JsonSerializable
         return $this->errors[$field];
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->Name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAltitude()
+    {
+        return $this->altitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+
+
     public function jsonSerialize()
     {
         //return get_object_vars($this);
         return [
             "id" => intval($this->id),
-            "name" => $this->name,
+            "name" => $this->Name,
             "altitude" => intval($this->altitude),
             "location" => $this->location,
         ];
