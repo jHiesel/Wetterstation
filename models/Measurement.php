@@ -76,6 +76,13 @@ class Measurement implements DatabaseObject, JsonSerializable
      */
     public static function getAllByStation($station_id)
     {
+        $db = Database::connect();
+        $sql = "SELECT * FROM measurement where station_id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array($station_id));
+        $item = $stmt->fetchAll(PDO::FETCH_CLASS, 'Measurement');
+        Database::disconnect();
+        return $item !== false ? $item : null;
 
     }
 

@@ -226,4 +226,19 @@ class Station implements DatabaseObject, JsonSerializable
         ];
     }
 
+    public function setName($getDataOrNull)
+    {
+        $this->Name = $getDataOrNull;
+    }
+
+    public function setAltitude($getDataOrNull)
+    {
+        $this->altitude = $getDataOrNull;
+    }
+
+    public function setLocation($getDataOrNull)
+    {
+        $this->location = $getDataOrNull;
+    }
+
 }
