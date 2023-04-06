@@ -29,6 +29,11 @@
             </tr>
             </thead>
             <tbody id="measurements"></tbody>
+            <?php
+            /*
+             * TODO: gotta add the chart.js stuff here (also the ajax needs implementation here)
+             */
+            ?>
         </table>
     </div>
 </div> <!-- /container -->

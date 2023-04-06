@@ -6,6 +6,9 @@ require_once('models/Measurement.php');
 
 class StationRESTController extends RESTController
 {
+    /*
+     * TODO: well you know everything here basically
+    */
     public function handleRequest()
     {
         switch ($this->method) {
