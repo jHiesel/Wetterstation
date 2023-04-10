@@ -14,7 +14,8 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/index.js"></script>
 
-    <link rel="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js">
+    <script src="js/Chart.js"></script>
+
 
 </head>
 <body>

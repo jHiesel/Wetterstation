@@ -16,7 +16,11 @@
             <a class="btn btn-default" href="index.php?r=station/index"><span class="glyphicon glyphicon-pencil"></span> Messstationen bearbeiten</a>
 
             <canvas id="chart" width="400" height="100"></canvas>
+            <script>
+                const ctx = document.getElementById('chart');
 
+
+            </script>
         <br/>
 
         <table class="table table-striped table-bordered" id="test">
@@ -28,12 +32,9 @@
                 <th></th>
             </tr>
             </thead>
+
             <tbody id="measurements"></tbody>
-            <?php
-            /*
-             * TODO: gotta add the chart.js stuff here (also the ajax needs implementation here)
-             */
-            ?>
+
         </table>
     </div>
 </div> <!-- /container -->
