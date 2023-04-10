@@ -12,9 +12,9 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/index.js"></script>
 
-    <!--  TODO Einbinden von chart.js -->
-    <!--  TODO Einbinden von index.js -->
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js">
 
 </head>
 <body>

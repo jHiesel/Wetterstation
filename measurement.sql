@@ -1,17 +1,22 @@
 # TODO
 # table station (id, name, altitude, location)
 
-CREATE TABLE `measurement`
+CREATE TABLE  IF NOT EXISTS `measurement`
 (
     `id`          int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `time`        timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `temperature` double    NOT NULL,
     `rain`        double    NOT NULL,
     `station_id`  int(11) NOT NULL
-);
+
+
+
+
+       );
+
 
 ALTER TABLE `measurement`
-    ADD CONSTRAINT `fk_station_id` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+       ADD CONSTRAINT `fk_station_id` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 INSERT INTO `measurement` (`id`, `temperature`, `rain`, `station_id`)
 VALUES (1, 0.7, 0, 1),

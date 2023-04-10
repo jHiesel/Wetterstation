@@ -3,6 +3,11 @@
 require_once("DatabaseObject.php");
 require_once("Station.php");
 
+/*
+ *TODO: it needs all the methods implemented they are not finished
+ */
+
+
 class Measurement implements DatabaseObject, JsonSerializable
 {
     private $id;
@@ -62,7 +67,13 @@ class Measurement implements DatabaseObject, JsonSerializable
      */
     public static function get($id)
     {
-
+        $db = Database::connect();
+        $sql = "SELECT * FROM measurement where id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array($id));
+        $item = $stmt->fetchObject('Measurement');
+        Database::disconnect();
+        return $item !== false ? $item : null;
     }
 
     public static function getAll() {
@@ -92,7 +103,17 @@ class Measurement implements DatabaseObject, JsonSerializable
      */
     public static function delete($id)
     {
-
+        try {
+            $db = Database::connect();
+            $sql = "DELETE FROM measurement WHERE id = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(array($id));
+            Database::disconnect();
+            return true;    // success
+        }catch (Exception $e) {
+            Database::disconnect();
+            return false;   // error
+        }
     }
 
     private function validateTime()
@@ -182,5 +203,57 @@ class Measurement implements DatabaseObject, JsonSerializable
 
         return $data;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTemperature()
+    {
+        return $this->temperature;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRain()
+    {
+        return $this->rain;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStationId()
+    {
+        return $this->station_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStationName()
+    {
+        return Station::get($this->station_id)->getName();
+
+    }
+
+
+
 
 }

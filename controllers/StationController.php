@@ -82,6 +82,12 @@ class StationController extends Controller
     public function actionDelete($id)
     {
         if (!empty($_POST)) {
+            $toDeleteMeasurement = Measurement::getAllByStation($id);
+
+            foreach ($toDeleteMeasurement as $measurement){
+                Measurement::delete($measurement->getId());
+            }
+
             Station::delete($id);
             $this->redirect('station/index');
             return;
