@@ -8,6 +8,7 @@ function loadDoc() {
         let measurements = JSON.parse(this.responseText);
         let response;
 
+        
         measurements.forEach(function(object, index){
 
             response += "<tr>"+
@@ -17,6 +18,8 @@ function loadDoc() {
                         "</tr>"
         });
         document.getElementById("measurements").innerHTML =  response.substring(9) ;
+
+
     }
     xhttp.open("GET", "api.php?r=station/"+e.options[e.selectedIndex].value+"/measurements");
     xhttp.send();
